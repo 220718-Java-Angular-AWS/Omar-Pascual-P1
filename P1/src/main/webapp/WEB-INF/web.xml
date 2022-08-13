@@ -15,15 +15,39 @@
         <listener-class>com.revature.servlets.DependencyLoaderListener</listener-class>
     </listener>
 
+    <servlet-mapping>
+        <servlet-name>heartServlet</servlet-name>
+        <url-pattern>/heart</url-pattern>
+    </servlet-mapping>
+
     <servlet>
-        <servlet-name>pingServlet</servlet-name>
-        <servlet-class>com.revature.servlets.PingServlet</servlet-class>
+    <servlet-name>heartServlet</servlet-name>
+    <servlet-class>com.revature.servlets.HeartServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>pingServlet</servlet-name>
-        <url-pattern>/ping</url-pattern><!-->localhost:8080/contextpath/ping<-->
+        <servlet-name>userServlet</servlet-name>
+        <url-pattern>/users</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>userServlet</servlet-name>
+        <servlet-class>com.revature.servlets.UserServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>reimburseServlet</servlet-name>
+        <url-pattern>/reimburses</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>reimburseServlet</servlet-name>
+        <servlet-class>com.revature.servlets.ReimburseServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+
 
 
 </web-app>

@@ -7,15 +7,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
-/*
-This will let us make a connection with the database
-The Connection Manager
- */
+
 public class DataSourceService {
 
     private static Connection connection;
+
     //private constructor for Singleton Design Pattern
-    private DataSourceService(){
+    private DataSourceService() {
 
     }
 
@@ -26,7 +24,9 @@ public class DataSourceService {
         return connection;
     }
 
+
     private static void connect() {
+        System.out.println("Initializing datasource...");
         //connect to database here
         //The connection string we want to build for postgres: 	jdbc:postgresql://hostname:port/databaseName
 
@@ -42,9 +42,11 @@ public class DataSourceService {
             String host = props.getProperty("host");
             String port = props.getProperty("port");
             String dbname = props.getProperty("dbname");
-            String driver = props.getProperty("driver");
             String username = props.getProperty("username");
             String password = props.getProperty("password");
+            String schema = props.getProperty("schema");
+            String driver = props.getProperty("driver");
+
 
             StringBuilder builder = new StringBuilder("jdbc:postgresql://");
             builder.append(host);
@@ -56,14 +58,14 @@ public class DataSourceService {
             builder.append(username);
             builder.append("&password=");
             builder.append(password);
-            builder.append("&currentSchema=public");
-
+            builder.append("&currentSchema=");
+            builder.append(schema);
 
             Class.forName(driver);
 
-
             connection = DriverManager.getConnection(builder.toString());
 
+            System.out.println("Datasource Initialized!");
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -76,4 +78,5 @@ public class DataSourceService {
         }
 
     }
+
 }

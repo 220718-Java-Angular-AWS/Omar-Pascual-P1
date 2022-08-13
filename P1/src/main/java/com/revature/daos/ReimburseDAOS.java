@@ -21,7 +21,9 @@ public class ReimburseDAOS implements DataSourceCrud<Reimburse> {
      */
     public ReimburseDAOS() {
         //This will let me get the connection from somewhere else AKA DatasourceService
+        //connection = DataSourceService.getConnection();
         connection = DataSourceService.getConnection();
+        //this.connection = DataSourceService.getConnection();
     }
 
     //@Override
@@ -33,7 +35,7 @@ public class ReimburseDAOS implements DataSourceCrud<Reimburse> {
             //marshal the result set
 
             //They are ? because we will parameterize later
-            String sql = "INSERT INTO tasks (user_id, ticket, reason, amount, pending) VALUES (?,?,?,?,false)";
+            String sql = "INSERT INTO reimburse (user_id, ticket, reason, amount, pending) VALUES (?,?,?,?,false)";
             //PreparedStatement is the type that we're going to store the reference into
             //Not user "new" keyword because it's an interface, not a class. Getting back some inherited concrete
             //class from what were going to do with the connection
@@ -62,7 +64,7 @@ public class ReimburseDAOS implements DataSourceCrud<Reimburse> {
         Reimburse reimburse = new Reimburse();
 
         try {
-            String sql = "SELECT * FROM tasks WHERE reimburse_id = ? ";
+            String sql = "SELECT * FROM reimburse WHERE reimburse_id = ? ";
             PreparedStatement pstmt = connection.prepareStatement(sql);
 
             pstmt.setInt(1, id);
@@ -151,7 +153,7 @@ public class ReimburseDAOS implements DataSourceCrud<Reimburse> {
     //@Override
     public void delete(int id) {
         try{
-            String sql = "DELETE FROM tasks WHERE reimburse_id = ?";
+            String sql = "DELETE FROM reimburse WHERE reimburse_id = ?";
             PreparedStatement pstmt = connection.prepareStatement(sql);
 
             pstmt.setInt(1, id);
