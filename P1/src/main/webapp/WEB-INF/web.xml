@@ -27,7 +27,7 @@
 
     <servlet-mapping>
         <servlet-name>userServlet</servlet-name>
-        <url-pattern>/users</url-pattern>
+        <url-pattern>/user</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -35,5 +35,17 @@
         <servlet-class>com.revature.servlets.UserServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+
+    <servlet-mapping>
+        <servlet-name>reimburseServlet</servlet-name>
+        <url-pattern>/reimburse</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>reimburseServlet</servlet-name>
+        <servlet-class>com.revature.servlets.ReimburseServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
 
 </web-app>
