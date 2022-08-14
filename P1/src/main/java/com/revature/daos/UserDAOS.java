@@ -7,14 +7,14 @@ import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
-public class UserDAOS implements DataSourceCrud<Users> {
-    //This will let us set the connection
+public class UserDAOS implements DataSourceCrud<Users>{
+
     Connection connection;
 
-    public UserDAOS(){
-        //This will let me get the connection from somewhere else AKA DatasouceService
+    public UserDAOS() {
         this.connection = DataSourceService.getConnection();
     }
+
 
     @Override
     public void create(Users user) {
@@ -28,12 +28,10 @@ public class UserDAOS implements DataSourceCrud<Users> {
             pstmt.executeUpdate();
 
             ResultSet keys = pstmt.getGeneratedKeys();
-            if(keys.next()){
+            if(keys.next()) {
                 Integer key = keys.getInt("user_id");
                 user.setUserId(key);
             }
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -121,5 +119,4 @@ public class UserDAOS implements DataSourceCrud<Users> {
 
 
     }
-
 }

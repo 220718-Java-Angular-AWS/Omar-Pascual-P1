@@ -1,28 +1,24 @@
 package com.revature.pojos;
+
 import java.util.Objects;
 
-/*
-This is a pojo (plain old java object) Which is just a sort of name to refer to the simplest encapsulation
- */
-
-/*
-In SQL datatable. In the users, we have user_id, username, email, and password
- */
-
 public class Users {
-    //User Integer instead of int because wrapper classes are references of objects. which can be null
-    //While int can not be null
     private Integer userId;
     private String username;
     private String email;
     private String password;
 
-    public Users(){
-
+    public Users() {
     }
 
     public Users(Integer userId, String username, String email, String password) {
         this.userId = userId;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+
+    public Users(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -64,8 +60,8 @@ public class Users {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Users users = (Users) o;
-        return Objects.equals(userId, users.userId) && Objects.equals(username, users.username) && Objects.equals(email, users.email) && Objects.equals(password, users.password);
+        Users user = (Users) o;
+        return Objects.equals(userId, user.userId) && Objects.equals(username, user.username) && Objects.equals(email, user.email) && Objects.equals(password, user.password);
     }
 
     @Override
@@ -75,7 +71,7 @@ public class Users {
 
     @Override
     public String toString() {
-        return "Users{" +
+        return "{" +
                 "userId=" + userId +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +

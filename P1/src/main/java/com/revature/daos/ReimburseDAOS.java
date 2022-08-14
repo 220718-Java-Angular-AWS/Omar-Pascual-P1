@@ -22,8 +22,7 @@ public class ReimburseDAOS implements DataSourceCrud<Reimburse> {
     public ReimburseDAOS() {
         //This will let me get the connection from somewhere else AKA DatasourceService
         //connection = DataSourceService.getConnection();
-        connection = DataSourceService.getConnection();
-        //this.connection = DataSourceService.getConnection();
+        this.connection = DataSourceService.getConnection();
     }
 
     //@Override

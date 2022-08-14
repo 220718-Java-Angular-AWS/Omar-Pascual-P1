@@ -7,7 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
 public class ReimburseServlet extends HttpServlet {
-    private ReimburseService service;
+    //private ReimburseService service;
+    ReimburseService service;
     ObjectMapper mapper;
 
     @Override
