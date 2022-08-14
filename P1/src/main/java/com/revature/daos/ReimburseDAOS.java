@@ -12,13 +12,7 @@ import java.util.List;
 
 public class ReimburseDAOS implements DataSourceCrud<Reimburse> {
     Connection connection;
-    /*-------------------Dependency injection---------------------------
-    rather than do Connection connection = new Connection
-    we can say
-    public TaskDAO(Connection connection)
-    Another way to do it is
-    connection = datasourceService.getConnection();
-     */
+
     public ReimburseDAOS() {
         //This will let me get the connection from somewhere else AKA DatasourceService
         //connection = DataSourceService.getConnection();
@@ -47,7 +41,7 @@ public class ReimburseDAOS implements DataSourceCrud<Reimburse> {
             pstmt.setInt(2, reimburse.getTicket());
             pstmt.setString(3, reimburse.getReasons());
             pstmt.setDouble(4, reimburse.getAmount());
-            //pstmt.setBoolean(5, reimburse.getPending());
+            pstmt.setBoolean(5, reimburse.getPending());
             //Step3: Execute the statement
             //We use execute update because we are creating something in the database
             //And only 1 row will be effected.

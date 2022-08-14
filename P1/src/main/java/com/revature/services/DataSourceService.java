@@ -26,7 +26,7 @@ public class DataSourceService {
 
 
     private static void connect() {
-        System.out.println("Initializing datasource...");
+        //System.out.println("Initializing datasource...");
         //connect to database here
         //The connection string we want to build for postgres: 	jdbc:postgresql://hostname:port/databaseName
 

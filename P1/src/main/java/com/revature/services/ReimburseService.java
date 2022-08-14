@@ -24,6 +24,17 @@ public class ReimburseService {
         return dao.readAll();
     }
 
+    public List<Reimburse> getReimburseForUser(Integer userId){
+        List<Reimburse> reimburseList = dao.readAll();
+
+        for(Reimburse reimburse : reimburseList){
+            if(!reimburse.getUserId().equals(userId)){
+                reimburseList.remove(reimburse);
+            }
+        }
+        return reimburseList;
+    }
+
     public void updateReimburse(Reimburse reimburse){
         dao.update(reimburse);
     }
