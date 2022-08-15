@@ -14,12 +14,12 @@
     <input> is the tag for various input elements. The "type" attribute on the input elements tell the browser what type of thing
     goes there. The "id" attribute is how we will find that element when we search the DOM later. Lastly, the button
     element is the button to click and submit the data. <button> has an "onclick" attribute which indicates what behavior
-    is invoked when clicked. In this case it invokes the getTasksForUser() method.   -->
+    is invoked when clicked. In this case it invokes the getReimburseForUser() method.   -->
     <h1>New User Form</h1>
     Username: <input type="text" id="username"><br>
     Email: <input type="text" id="email"><br>
     Password: <input type="password" id="password"><br>
-    <button type="button" onclick="getTasksForUser()">Add New User</button>
+    <button type="button" onclick="getReimburseForUser()">Add New User</button>
 </body>
 
 
@@ -27,7 +27,7 @@
     It doesn't have to be a single function or anything, we can write as much js here as we want. -->
 <script>
     // The function is asynchronous. This just means we can use the "await" keyword to make the code execute asynchronously.
-    async function getTasksForUser() {
+    async function getReimburseForUser() {
 
         //Here we are building our user object that we will send as the request body. For each of the three fields in this
         //object - username, email, and password - we are pulliung the value from our input elements up in the body. 
@@ -42,7 +42,7 @@
 
         //We want to send our HTTP request to the proper server and endpoint. 
         //In thic case we are going to send a POST to the /users endpoint
-        let url = 'http://localhost:8080/P1/users';
+        let url = 'http://localhost:8080/P1/user';
 
         /*This is the actual HTTP request code. We use the await keyword to indicate that this funciton may not 
         complete immedately (synchronously) so we may need to wait for the results to become available. We will 

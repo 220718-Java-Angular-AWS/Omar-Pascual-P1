@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>View Reimburses</title>
 </head>
+
+
 <body>
-    <div id="taskList"></div>
+    <div id="reimburseList"></div>
  </body>   
 <script>
-    //Make an API call for tasks
-    (async function getTaskForUser(userId){
+    //Make an API call for reimburse
+    (async function getReimburseForUser(userId){
         //url is a server
-        let url = 'http://localhost:8080/P1/tasks?user-id=' + userId;
+        let url = 'http://localhost:8080/P1/reimburse?user-id=' + userId;
         let response = await fetch(url, {
             method: 'GET',
             headers: {
@@ -26,19 +28,19 @@
     console.log(array);
 
     //get the element where we will place our content
-     let htmlElement = document.getElementById('taskList');
+     let htmlElement = document.getElementById('reimburseList');
 
     
     //This will allow us to see what is going on
     //console.log spits the objects out
     for(let i =0; i < array.length; i++){
         console.log(srray[i]);
-        let task = JSON.stringify
+        let reimburse = JSON.stringify
 
         //insert into the web page the data
-        htmlElement.innerHTML += "<h4>Title: " + task.title + "</h4><br>";
-        htmlElement.innerHTML += "<p>Message: " + task.message + "</p>";
-        htmlElement.innerHTML += "<p>Completed: " + task.completed + "</p>";
+        htmlElement.innerHTML += "<h4>Title: " + reimburse.ticket + "</h4><br>";
+        htmlElement.innerHTML += "<p>Reasons: " + reimburse.reasons + "</p>";
+        htmlElement.innerHTML += "<p>Pending: " + reimburse.pending + "</p>";
     }
     
     })(1);
