@@ -19,7 +19,7 @@ public class UserDAOS implements DataSourceCrud<Users>{
     @Override
     public void create(Users user) {
         try {
-            String sql = "INSERT INTO users (user_name, email, password) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
             PreparedStatement pstmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, user.getUsername());
             pstmt.setString(2, user.getEmail());
@@ -49,7 +49,7 @@ public class UserDAOS implements DataSourceCrud<Users>{
 
             if(results.next()) {
                 user.setUserId(results.getInt("user_id"));
-                user.setUsername(results.getString("user_name"));
+                user.setUsername(results.getString("username"));
                 user.setEmail(results.getString("email"));
                 user.setPassword(results.getString("password"));
             }
@@ -74,7 +74,7 @@ public class UserDAOS implements DataSourceCrud<Users>{
             while(results.next()) {
                 Users user = new Users();
                 user.setUserId(results.getInt("user_id"));
-                user.setUsername(results.getString("user_name"));
+                user.setUsername(results.getString("username"));
                 user.setEmail(results.getString("email"));
                 user.setPassword(results.getString("password"));
                 userList.add(user);
@@ -91,7 +91,7 @@ public class UserDAOS implements DataSourceCrud<Users>{
     public void update(Users user) {
 
         try {
-            String sql = "UPDATE users SET user_name = ?, email = ?, password = ?, WHERE user_id = ?";
+            String sql = "UPDATE users SET username = ?, email = ?, password = ?, WHERE user_id = ?";
             PreparedStatement pstmt = connection.prepareStatement(sql);
             pstmt.setString(1, user.getUsername());
             pstmt.setString(2, user.getEmail());
