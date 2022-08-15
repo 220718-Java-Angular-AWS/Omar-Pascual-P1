@@ -10,7 +10,7 @@ public class DependencyLoaderListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         System.out.println("Initializing servlet context...");
         //This will establish the connection early on
-        //DataSourceService.getConnection();
+        DataSourceService.getConnection();
         //Do things for servlets context initialization...
         System.out.println("Servlets context init");
     }

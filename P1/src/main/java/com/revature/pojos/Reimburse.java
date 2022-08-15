@@ -7,8 +7,8 @@ public class Reimburse {
     private Integer userId;
     private Integer ticket;
     private String reasons;
-    private Double amount;
-    private Boolean pending;
+    private double amount;
+    private boolean pending;
 
     public Reimburse(){
 
