@@ -124,7 +124,7 @@ public class ReimburseDAOS implements DataSourceCrud<Reimburse> {
             //We are not updating the id here because it's serialized. It's the same everytime
             //Don't need to change ID because we don't need to create a new entry in the database or advance the entry
             //to another point in the database.
-            String sql = "UPDATE reimburse SET user_id = ?, ticket = ?, reasons = ?, amount = ?, pending =?,  WHERE reimburse_id = ?";
+            String sql = "UPDATE reimburse SET user_id = ?, ticket = ?, reasons = ?, amount = ?, pending = ?,  WHERE reimburse_id = ?";
             PreparedStatement pstmt = connection.prepareStatement(sql);
             //Previously querey the database and gotten the task object out of it. Return the path object
             //pass it to update after making changes.
@@ -133,6 +133,7 @@ public class ReimburseDAOS implements DataSourceCrud<Reimburse> {
             pstmt.setString(3, reimburse.getReasons());
             pstmt.setDouble(4, reimburse.getAmount());
             pstmt.setBoolean(5, reimburse.getPending());
+            pstmt.setInt(6, reimburse.getReimburseId());
 
             //We use update because we don't really care about the row count. Row count would be 1.
             //It would be 0 if there is no matching apss update.

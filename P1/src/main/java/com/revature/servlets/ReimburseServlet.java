@@ -31,15 +31,26 @@ public class ReimburseServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Integer userId = Integer.parseInt(req.getParameter("user-id"));
+        String param = req.getParameter("reimburse-id");
+        if(param == null) {
+            //Return all
+            List<Reimburse> reimburseList = service.getAllReimburse();
+            String json = mapper.writeValueAsString(reimburseList);
+            resp.getWriter().println(json);
+        } else {
+            //return the one the request wants
+            Integer reimburseId = Integer.parseInt(req.getParameter("reimburse-id"));
 
-        List<Reimburse> reimburseList = service.getReimburseForUser(userId);
-        String json = mapper.writeValueAsString(reimburseList);
+            Reimburse reimburse = service.getReimburse(reimburseId);
+            String json = mapper.writeValueAsString(reimburse);
+            resp.getWriter().println(json);
+        }
 
-        resp.getWriter().print(json);
+        resp.setContentType("Application/Json; Charset=UTF-8");
         resp.setStatus(200);
-        resp.setContentType("Application/Json");
+
     }
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

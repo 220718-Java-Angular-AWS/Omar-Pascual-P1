@@ -7,15 +7,17 @@ public class Users {
     private String username;
     private String email;
     private String password;
+    private boolean admin;
 
     public Users() {
     }
 
-    public Users(Integer userId, String username, String email, String password) {
+    public Users(Integer userId, String username, String email, String password, boolean admin) {
         this.userId = userId;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.admin = admin;
     }
 
     public Users(String username, String email, String password) {
@@ -56,26 +58,35 @@ public class Users {
         this.password = password;
     }
 
+    public boolean getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Users user = (Users) o;
-        return Objects.equals(userId, user.userId) && Objects.equals(username, user.username) && Objects.equals(email, user.email) && Objects.equals(password, user.password);
+        Users users = (Users) o;
+        return admin == users.admin && Objects.equals(userId, users.userId) && Objects.equals(username, users.username) && Objects.equals(email, users.email) && Objects.equals(password, users.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, username, email, password);
+        return Objects.hash(userId, username, email, password, admin);
     }
 
     @Override
     public String toString() {
-        return "{" +
+        return "Users{" +
                 "userId=" + userId +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", admin=" + admin +
                 '}';
     }
 }

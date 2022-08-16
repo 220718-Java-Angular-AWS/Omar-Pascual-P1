@@ -52,6 +52,7 @@ public class UserDAOS implements DataSourceCrud<Users>{
                 user.setUsername(results.getString("username"));
                 user.setEmail(results.getString("email"));
                 user.setPassword(results.getString("password"));
+                user.setAdmin(results.getBoolean("admin"));
             }
 
         } catch (SQLException e) {
@@ -77,6 +78,7 @@ public class UserDAOS implements DataSourceCrud<Users>{
                 user.setUsername(results.getString("username"));
                 user.setEmail(results.getString("email"));
                 user.setPassword(results.getString("password"));
+                user.setAdmin(results.getBoolean("admin"));
                 userList.add(user);
             }
 
