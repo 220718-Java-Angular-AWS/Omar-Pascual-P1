@@ -2,7 +2,9 @@ package com.revature.daos;
 
 import com.revature.pojos.Users;
 import com.revature.services.DataSourceService;
+import jdk.internal.org.objectweb.asm.commons.RemappingSignatureAdapter;
 
+import java.nio.file.AccessDeniedException;
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
@@ -118,7 +120,33 @@ public class UserDAOS implements DataSourceCrud<Users>{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
 
+    public Users authenticate(String username, String password){
+        Users users = new Users();
 
+        try{
+            String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+
+            ResultSet results = pstmt.executeQuery();
+            if(results.next()){
+                users.setUserId(results.getInt("user_id"));
+                users.setUsername(results.getString("username"));
+                users.setEmail(results.getString("email"));
+                users.setPassword(results.getString("password"));
+                users.setAdmin(results.getBoolean("admin"));
+
+            }else{
+                throw new AccessDeniedException("Access Denied!");
+            }
+
+        }catch(SQLException | AccessDeniedException e){
+            throw new RuntimeException(e);
+        }
+        return users;
     }
 }

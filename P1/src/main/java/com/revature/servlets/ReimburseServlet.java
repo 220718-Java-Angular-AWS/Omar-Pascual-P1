@@ -31,7 +31,7 @@ public class ReimburseServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String param = req.getParameter("reimburse-id");
+        String param = req.getParameter("reimburseId");
         if(param == null) {
             //Return all
             List<Reimburse> reimburseList = service.getAllReimburse();
@@ -39,7 +39,7 @@ public class ReimburseServlet extends HttpServlet {
             resp.getWriter().println(json);
         } else {
             //return the one the request wants
-            Integer reimburseId = Integer.parseInt(req.getParameter("reimburse-id"));
+            Integer reimburseId = Integer.parseInt(req.getParameter("reimburseId"));
 
             Reimburse reimburse = service.getReimburse(reimburseId);
             String json = mapper.writeValueAsString(reimburse);
