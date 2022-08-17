@@ -29,6 +29,27 @@ public class AuthServlet extends HttpServlet {
     }
 
     @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        StringBuilder builder = new StringBuilder();
+        BufferedReader buffer = req.getReader();
+        while(buffer.ready()) {
+            builder.append(buffer.readLine());
+        }
+        String json = builder.toString();
+
+        Users users = mapper.readValue(json, Users.class);
+        Users authUser = service.authenticate(users.getUsername(), users.getPassword());
+
+        if(authUser != null){
+            resp.setStatus(200);
+            resp.getWriter().write(mapper.writeValueAsString(authUser));
+            resp.setHeader("JWT", String.valueOf(users.getUserId()));
+        }else{
+            resp.setStatus(403);
+        }
+    }
+
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
@@ -36,7 +57,7 @@ public class AuthServlet extends HttpServlet {
         Users authUser = service.authenticate(username, password);
 
         String json = mapper.writeValueAsString(authUser);
-        resp.getWriter().print(json);
+        resp.getWriter().println(json);
 
         resp.setStatus(200);
         resp.setContentType("Application/Json; Charset=UTF-8");

@@ -20,6 +20,7 @@ public class CORSFilter implements Filter {
     @Override
     public void init(FilterConfig fConfig) throws ServletException {
         // TODO Auto-generated method stub
+        System.out.println("CORS filter initialized");
     }
 
     /**
@@ -28,6 +29,7 @@ public class CORSFilter implements Filter {
     @Override
     public void destroy() {
         // TODO Auto-generated method stub
+        System.out.println("CORSE initialized");
     }
 
 

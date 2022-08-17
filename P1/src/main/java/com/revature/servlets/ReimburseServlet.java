@@ -61,14 +61,23 @@ public class ReimburseServlet extends HttpServlet {
             builder.append(buffer.readLine());
         }
         String json = builder.toString();
-        Reimburse reimburse = mapper.readValue(json, Reimburse.class);
+        Reimburse newReimburse = mapper.readValue(json, Reimburse.class);
 
-        service.saveReimburse(reimburse);
+        service.saveReimburse(newReimburse);
+        resp.setStatus(200);
     }
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        StringBuilder builder = new StringBuilder();
+        BufferedReader buffer = req.getReader();
+        while(buffer.ready()){
+            builder.append(buffer.readLine());
+        }
+        String json = builder.toString();
 
+        Reimburse newReimburse = mapper.readValue(json, Reimburse.class);
+        service.updateReimburse(newReimburse);
     }
 
     @Override

@@ -133,6 +133,7 @@ public class UserDAOS implements DataSourceCrud<Users>{
             pstmt.setString(2, password);
 
             ResultSet results = pstmt.executeQuery();
+
             if(results.next()){
                 users.setUserId(results.getInt("user_id"));
                 users.setUsername(results.getString("username"));
