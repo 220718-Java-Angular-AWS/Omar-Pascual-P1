@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello Employee</h1>
+    <br><br><br>
+    <buttom type="button" onclick="newReimburse()">Make Reimbursement Request</buttom>
+    <br>
+    <br>
+    <button type="button" onclick="cancelReimburse()">Cancel A Pending Reimburse</button>
+    <br>
+    <br>
+    <button type="button" onclick="viewReimbuse()">View Reimbursement Requests</button>
+    <br>
+    <br>
+    <button type="button" onclick="editReimburse()">Edit a Reimbursement</button>
+    <br>
+    <div id="reimburseList"></div>
+    
+</body>
+
+<script>
+    async function newReimburse(){
+        location.href="newReimburseForm.html"
+    }
+
+    async function cancelReimburse(){
+
+    }
+
+    (async function viewReimburse(){
+        let url = 'http://localhost:8080/P1/reimburse?user-id=' +window.sessionStorage.getItem('userId')
+
+        let response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            }
+        });
+        let array = await response.json();
+        let htmlElement = document.getElementById('reimburseList');
+
+        for(let i=0; i < array.length; i++){
+            let req = array[i];
+
+            htmlElement.innerHTML += "<h4>TICKET: " + req.ticket + "</h4>"
+            htmlElement.innerHTML += "<h4>REASON: " + req.reason + "</h4>"
+            htmlElement.innerHTML += "<h4>AMOUNT: " + req.amount + "</h4>"
+            htmlElement.innerHTML += "<h4>PENDING: " + req.pending + "</h4>"
+        }
+    })();
+</script>
+</html>

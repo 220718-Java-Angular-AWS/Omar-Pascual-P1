@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<body>
+  <h1>Reimbursment Request</h1><br>
+  <label for="Reasons"> Reason for Reimbursement: </label>
+    <select name="reason" id="reason" required>
+        <optgroup label="Reason for Reimbursement">
+            <option value="Lodging">Lodging</option>
+            <option value="Food">Food</option>
+            <option calue="Travel">Travel</option>
+        </optgroup>
+    </select>
+    <div id="idHere"></div>
+    <br>
+    <label>Amount Requested:</label>
+    <input type="number" id="amount" min="0" maxLength="10000">
+    <br>
+    <button type="button" id="button" onclick="newReimburse()">Submit</button>
+    <br>
+    <buttom type="button" onclick="location.href='mainMenu.html'">Back To Main Menu</buttom>
+</body>
+
+<script>
+    let htmlElement=document.getElementById("idHere")
+    htmlElement.innerHTML += "<label>UserId# </label>" + window.sessionStorage.getItem('userId')
+    async function newReimburse(){
+        let url = 'http://localhost:8080/P1/reimburse'
+        let req = {
+            "userId": sessionStorage.getItem('userId'),
+            "reason": document.getElementById('reason').value,
+            "amount": document.getElementById('amount').value
+        }
+
+        let response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(reimburse)
+        });
+
+        if (response.status == 200) {
+            alert("Success!");
+        } else {
+            alert("Something went wrong...");
+        }
+    }
+</script>
+
+
+</html>

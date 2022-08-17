@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+</head>
+<body>
+    <form onsubmit = "return false">
+        <h1>Log In</h1>
+            <label>Enter Username: </label>
+            <input type="text" id="username" required>
+            <br>
+            <label>Enter Password: </label>
+            <input type="password" id="password" required>
+            <br>
+            <button type="submit" id="login" onclick="logInEmployee()">Log In</button>
+            <a href="newUserForm.html">New User</a>
+    </form>    
+</body>
+<script>
+    async function logInEmployee() {
+        username = document.getElementById("username").value;
+        password = document.getElementById("password").value;
+        let url = 'http://localhost:8080/P1/auth?username=' + username + '&password=' + password;
+        let response = await fetch(url, {
+            method: 'GET',           
+            headers:{
+                'Content-Type': 'application/json; charset=utf-8'
+            }
+        });
+        
+        if(response.status == 200){
+            let employee = await response.json();
+            if(localStorage.getItem == null){
+                document.getElementById("login").addEventListener("click", function() {
+                window.localStorage.setItem('userId', employee.employeeId);
+                localStorage.setItem('admin', employee.admin);
+            });
+            }else{
+                localStorage.getItem('userId');
+                localStorage.getItem('admin');
+                localStorage.setItem('userId', employee.employeeId);
+                localStorage.setItem('admin', employee.admin);
+            }
+            
+            if(employee.admin == true){
+                location.href = "file:///C:/Omar-Pascual-P1/UI/Admin/AdminMenu.html";
+            }else{
+                location.href = "file:///C:/Omar-Pascual-P1/UI/User/mainMenu.html";
+            }
+            
+        }else{
+            alert("Incorrect Email/Username or Password")
+        } 
+    }
+    
+</script>
+</html>

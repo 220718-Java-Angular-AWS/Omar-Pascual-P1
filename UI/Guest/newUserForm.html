@@ -20,6 +20,8 @@
     Email: <input type="text" id="email"><br>
     Password: <input type="password" id="password"><br>
     <button type="button" onclick="getReimburseForUser()">Add New User</button>
+    <br><br>
+    <button type="button" onclick="login()">Return to Login Page</button>
 </body>
 
 
@@ -69,6 +71,10 @@
             alert("Something went wrong...");
         }
 
+    }
+
+    async function login(){
+        location.href="login.html"
     }
 </script>
 
