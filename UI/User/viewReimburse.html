@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form onsubmit="return false">
+        <h3>Requests</h3>
+        <label>Request</label>
+        <button type="button" onclick="getRequest()">Get All</button>
+    </form>
+    <br>
+    <button type="button" onclick="mainMenu()">Back</button>
+</body>
+<script>
+    
+    async function getRequest() {
+        let userId = window.localStorage.getItem('userId');
+        let userStatus = localStorage.getItem('admin');
+        let url = 'http://localhost:8080/P1/reimburse?user-id=' + userId;
+        let response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            }
+        });
+ 
+        let array = await response.json();
+        let htmlElement = document.getElementById('requestTable')
+        htmlElement.style.border = "1px solid black" ;
+        htmlElement.style.background = "#8fccf2";
+            
+        htmlElement.innerHTML = "<tr><th style='width: 5%; border: 1px solid black'>Employee ID#</th>" +
+            "<th style='width: 5%; border: 1px solid black'>Request ID#</th>" +
+            "<th style='width: 20%; border: 1px solid black'>Title</th>" +
+            "<th style='width: 10%; border: 1px solid black'>Reimburesement Amount</th>" +
+            "<th style='border: 1px solid black'>Message</th>" +
+            "<th style='width: 10%; border: 1px solid black'>Status</th></tr>"
+        for(let i = 0; i < array.length; i++){
+            let request = array[i];
+            htmlElement.innerHTML += "<tr><td style='width: 5%; border: 1px solid black'>" + request.employeeId + 
+            "</td><td style='width: 5%; border: 1px solid black'>" + request.requestId + 
+            "</td><td style='border: 1px solid black'>" + request.title + 
+            "</td><td style='width: 10%; border: 1px solid black'>" + request.reimbursementAmount + 
+            "</td><td style='border: 1px solid black'>" + request.message + 
+            "</td><td style='width: 10%; border: 1px solid black'>" + request.status + 
+            "</td></tr>"
+        }
+    };
+    
+
+    async function mainMenu(){
+        location.href = "file:///C:/Omar-Pascual-P1/UI/User/mainMenu.html";
+    }
+    
+</script>
+</html>

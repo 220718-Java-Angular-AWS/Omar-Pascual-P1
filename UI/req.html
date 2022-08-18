@@ -16,9 +16,9 @@
         <label>Reimbursement Amount: </label>
         <input type="number" id="amount" min="0" maxlength="100000" step=".01">
         <br><br>
-        <label>Reason</label>
+        <label>Message</label>
         <br>
-        <textarea type="text" rows="6" cols="100" id="reason" required></textarea>
+        <textarea type="text" rows="6" cols="100" id="message" required></textarea>
         <br>
         <button type="submit" id="btn" onclick="newRequest()">Submit</button>
     </form>
@@ -31,7 +31,7 @@
         let request = {
             title: document.getElementById("title").value,
             reimbursementAmount: document.getElementById("amount").value,
-            reason: document.getElementById("reason").value,
+            message: document.getElementById("message").value,
             employeeId: currentEmployeeId,
         }
 
@@ -43,11 +43,11 @@
             alert("Field \"Amount\" cannot be empty");
             throw "Field cannot be empty!"
         }
-        if(request.reason.length == 0) {
-            alert("Field \"reason\" cannot be empty");
+        if(request.message.length == 0) {
+            alert("Field \"Message\" cannot be empty");
             throw "Field cannot be empty!"
         }
-        let url = 'http://localhost:8080/P1/reimburse';
+        let url = 'http://localhost:8080/Jared-Adams-P1/request';
         let response = await fetch(url, {
             method: 'POST',
             headers: {
@@ -57,13 +57,13 @@
         });
         if(response.status == 200){
             alert("Request Added");
-            location.href = 'file:///C:/Omar-Pascual-P1/UI/User/mainMenu.html';
+            location.href = 'file:///C:/Revature/Jared-Adams-P1/UI/Employee/mainMenu.html';
         }
         }
     
 
     async function returnMainMenu() {
-        location.href = 'file:///C:/Omar-Pascual-P1/UI/User/mainMenu.html'
+        location.href = 'file:///C:/Revature/Jared-Adams-P1/UI/Employee/mainMenu.html'
     }
 </script>
 </html>

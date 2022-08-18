@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Hello Employee</h1>
+    <h1>Employee</h1>
     <br><br><br>
     <buttom type="button" onclick="newReimburse()">Make Reimbursement Request</buttom>
     <br>
@@ -33,26 +33,11 @@
 
     }
 
-    (async function viewReimburse(){
-        let url = 'http://localhost:8080/P1/reimburse?user-id=' +window.sessionStorage.getItem('userId')
+    async function viewReimbuse(){
+        location.href="viewReimburse.html"
+    }
 
-        let response = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-            }
-        });
-        let array = await response.json();
-        let htmlElement = document.getElementById('reimburseList');
 
-        for(let i=0; i < array.length; i++){
-            let req = array[i];
 
-            htmlElement.innerHTML += "<h4>TICKET: " + req.ticket + "</h4>"
-            htmlElement.innerHTML += "<h4>REASON: " + req.reason + "</h4>"
-            htmlElement.innerHTML += "<h4>AMOUNT: " + req.amount + "</h4>"
-            htmlElement.innerHTML += "<h4>PENDING: " + req.pending + "</h4>"
-        }
-    })();
 </script>
 </html>
