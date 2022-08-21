@@ -95,12 +95,13 @@ public class UserDAOS implements DataSourceCrud<Users>{
     public void update(Users user) {
 
         try {
-            String sql = "UPDATE users SET username = ?, email = ?, password = ?, WHERE user_id = ?";
+            String sql = "UPDATE users SET username = ?, email = ?, password = ?, admin = ? WHERE user_id = ?";
             PreparedStatement pstmt = connection.prepareStatement(sql);
             pstmt.setString(1, user.getUsername());
             pstmt.setString(2, user.getEmail());
             pstmt.setString(3, user.getPassword());
-            pstmt.setInt(4, user.getUserId());
+            pstmt.setBoolean(4,user.getAdmin());
+            pstmt.setInt(5, user.getUserId());
             pstmt.executeUpdate();
 
 

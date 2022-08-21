@@ -77,10 +77,8 @@ public class UserServlet extends HttpServlet {
             builder.append(buffer.readLine());
         }
         String json = builder.toString();
-
-
-        Users newUser = mapper.readValue(json, Users.class);
-        service.saveUser(newUser);
+        Users updateUser = mapper.readValue(json, Users.class);
+        service.updateUser(updateUser);
 
         resp.setStatus(200);
     }

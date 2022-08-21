@@ -6,7 +6,7 @@ public class Reimburse {
     private Integer reimburseId;
     private Integer userId;
     private Integer ticket;
-    private String reasons;
+    private String reason;
     private double amount;
     private boolean pending;
 
@@ -14,11 +14,11 @@ public class Reimburse {
 
     }
 
-    public Reimburse(Integer reimburseId, Integer userId, Integer ticket, String reasons, Double amount, Boolean pending) {
+    public Reimburse(Integer reimburseId, Integer userId, Integer ticket, String reason, Double amount, Boolean pending) {
         this.reimburseId = reimburseId;
         this.userId = userId;
         this.ticket = ticket;
-        this.reasons = reasons;
+        this.reason = reason;
         this.amount = amount;
         this.pending = pending;
     }
@@ -47,12 +47,13 @@ public class Reimburse {
         this.ticket = ticket;
     }
 
-    public String getReasons() {
-        return reasons;
+    public String getReason() {
+        return reason;
     }
 
-    public void setReasons(String reasons) {
-        this.reasons = reasons;
+    public void setReason(String reason
+    ) {
+        this.reason = reason;
     }
 
     public Double getAmount() {
@@ -76,12 +77,12 @@ public class Reimburse {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Reimburse reimburse = (Reimburse) o;
-        return Objects.equals(reimburseId, reimburse.reimburseId) && Objects.equals(userId, reimburse.userId) && Objects.equals(ticket, reimburse.ticket) && Objects.equals(reasons, reimburse.reasons) && Objects.equals(amount, reimburse.amount) && Objects.equals(pending, reimburse.pending);
+        return Objects.equals(reimburseId, reimburse.reimburseId) && Objects.equals(userId, reimburse.userId) && Objects.equals(ticket, reimburse.ticket) && Objects.equals(reason, reimburse.reason) && Objects.equals(amount, reimburse.amount) && Objects.equals(pending, reimburse.pending);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(reimburseId, userId, ticket, reasons, amount, pending);
+        return Objects.hash(reimburseId, userId, ticket, reason, amount, pending);
     }
 
     @Override
@@ -90,7 +91,7 @@ public class Reimburse {
                 "reimburseId=" + reimburseId +
                 ", userId=" + userId +
                 ", ticket=" + ticket +
-                ", reasons='" + reasons + '\'' +
+                ", reason='" + reason + '\'' +
                 ", amount=" + amount +
                 ", pending=" + pending +
                 '}';
