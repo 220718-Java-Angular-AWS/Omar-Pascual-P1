@@ -20,37 +20,28 @@
     
     async function getRequest() {
         let userId = window.localStorage.getItem('userId');
-        let userStatus = localStorage.getItem('admin');
         let url = 'http://localhost:8080/P1/reimburse?user-id=' + userId;
         let response = await fetch(url, {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json; charset=utf-8'
-            }
+                'content-Type': 'application/json; charset=utf-8'
+            },
         });
- 
+
         let array = await response.json();
-        let htmlElement = document.getElementById('requestTable')
-        htmlElement.style.border = "1px solid black" ;
-        htmlElement.style.background = "#8fccf2";
-            
-        htmlElement.innerHTML = "<tr><th style='width: 5%; border: 1px solid black'>Employee ID#</th>" +
-            "<th style='width: 5%; border: 1px solid black'>Request ID#</th>" +
-            "<th style='width: 20%; border: 1px solid black'>Title</th>" +
-            "<th style='width: 10%; border: 1px solid black'>Reimburesement Amount</th>" +
-            "<th style='border: 1px solid black'>Message</th>" +
-            "<th style='width: 10%; border: 1px solid black'>Status</th></tr>"
+        let htmlELEMENT = document.getElementById('reimburseList');
+
         for(let i = 0; i < array.length; i++){
-            let request = array[i];
-            htmlElement.innerHTML += "<tr><td style='width: 5%; border: 1px solid black'>" + request.employeeId + 
-            "</td><td style='width: 5%; border: 1px solid black'>" + request.requestId + 
-            "</td><td style='border: 1px solid black'>" + request.title + 
-            "</td><td style='width: 10%; border: 1px solid black'>" + request.reimbursementAmount + 
-            "</td><td style='border: 1px solid black'>" + request.message + 
-            "</td><td style='width: 10%; border: 1px solid black'>" + request.status + 
-            "</td></tr>"
+            let reimburse = array[i];
+
+            htmlELEMENT.innerHTML +="<h1>Reimurse Id: " +reimburse.reimburseId + "<h1>";
+            htmlELEMENT.innerHTML +="<h1>User Id: " +reimburse.userId + "<h1>";
+            htmlELEMENT.innerHTML +="<h1>Ticket: " +reimburse.ticket + "<h1>";
+            htmlELEMENT.innerHTML +="<h1>Reason: " +reimburse.reason + "<h1>";
+            htmlELEMENT.innerHTML +="<h1>Amount: " +reimburse.amount + "<h1>";
+            htmlELEMENT.innerHTML +="<h1>Pending: " +reimburse.pending + "<h1>";
         }
-    };
+    }
     
 
     async function mainMenu(){

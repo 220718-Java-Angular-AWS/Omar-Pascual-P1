@@ -7,59 +7,21 @@
     <title>Document</title>
 </head>
 <body>
-    <form onsubmit="return false">
-        <h1>New Request</h1>
-        <label>Title</label>
-        <br>
-        <input type="text" id="title" style="width: 500px;" required>
-        <br><br>
-        <label>Reimbursement Amount: </label>
-        <input type="number" id="amount" min="0" maxlength="100000" step=".01">
-        <br><br>
-        <label>Reason</label>
-        <br>
-        <textarea type="text" rows="6" cols="100" id="reason" required></textarea>
-        <br>
-        <button type="submit" id="btn" onclick="newRequest()">Submit</button>
-    </form>
+    <h1>New Request</h1>
+    Type: <input type="text" id="type">
+    <br>
+    Reason: <input type="text" id="reason">
+    <br>
+    Amount: <input type="text" id="amount">
+    <br>
+    <button type="submit" onclick="newRequest()">Submit</button>
+    <br>
     <button type="button" onclick="returnMainMenu()">Back</button>
 </body>
 <script>
     let currentEmployeeId = window.localStorage.getItem('userId');
-    let currentEmployeeStatus = localStorage.getItem('admin');
-    async function newRequest(){
-        let request = {
-            title: document.getElementById("title").value,
-            reimbursementAmount: document.getElementById("amount").value,
-            reason: document.getElementById("reason").value,
-            employeeId: currentEmployeeId,
-        }
-
-        if(request.title.length == 0) {
-            alert("Field \"Title\" cannot be empty");
-            throw "Field cannot be empty!"
-        }    
-        if(request.reimbursementAmount.length == 0) {
-            alert("Field \"Amount\" cannot be empty");
-            throw "Field cannot be empty!"
-        }
-        if(request.reason.length == 0) {
-            alert("Field \"reason\" cannot be empty");
-            throw "Field cannot be empty!"
-        }
-        let url = 'http://localhost:8080/P1/reimburse';
-        let response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8'
-            },
-            body: JSON.stringify(request)
-        });
-        if(response.status == 200){
-            alert("Request Added");
-            location.href = 'file:///C:/Omar-Pascual-P1/UI/User/mainMenu.html';
-        }
-        }
+    
+    async function newRequest(){}
     
 
     async function returnMainMenu() {

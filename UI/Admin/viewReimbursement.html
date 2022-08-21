@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REIMBURSEMENTS</title>
+</head>
+<body>
+    <h1>Search For Reimbursement</h1>
+    <label>By Reimburse ID: </label>
+    <input type="number" id="reimburse_id">
+    <p id="reimburseId"></p>
+    <button type="submit" onclick="findReimburse()">Find Reimburse</button>
+    <button type="submit" onclick="allReimburse()">View All Reimburse</button>
+    <br><br>
+    <button type="button" onclick="logOut()">Log Out</button>
+</body>
+
+<script>
+    async function findReimburse(){
+        let reimburse_id = document.getElementsById("reimburse_id").value;
+        let url='http://localhost:8080/P1/reimburse?reimburse_id=' + reimburse_id;
+        let response = await fetch(url, {
+            method: 'GET',
+            headers:{
+                'content-Type': 'application/json; charset=utf-8'
+            }
+        });
+        let reimburse = await response.json();
+        let reqTable = document.getElementById('reimburseId');
+        console.log(reimburse)
+        if(reimburse_user_id != null){
+            reqTable.innerHTML += "Reimburse ID: " + reimburse.reimburse_id +
+            "<br>User Id: " + reimburse.user_id;
+            "<br>Reason: " + reimburse.reason;
+            "<br>Amount: " + reimburse.amount;
+            "<br>Approval Status: " + reimburse.status;
+        }else{
+            alert("No Reimbursement Found")
+        }
+    }
+
+    async function allReimburse(){
+        let url = 'http://localhost:8080/P1/reimburse';
+        let response = await fetch(url, {
+            method: 'GET',
+            headers:{
+                'content-Type': 'application/json; charset=utf-8'
+            }
+        });
+        let reimburse = await response.json();
+        let reqTable = document.getElementById('reimburseId');
+        for(let i =0; i < array.length; i++){
+            let reimburse = array[i];
+            htmlElement.innerHTML += "<p>Reimburse ID: " + reimburse.reimburse_id + "<p>";
+            htmlElement.innerHTML += "<p>User ID: " + reimburse.user_id + "<p>";
+            htmlElement.innerHTML += "<p>Reason: " + reimburse.reason_id + "<p>";
+            htmlElement.innerHTML += "<p>Amount: " + reimburse.amount + "<p>";
+        }
+    }
+
+    async function logOut(){
+        location.href = "file:///C:/Omar-Pascual-P1/UI/Guest/login.html";
+    }
+</script>
+</html>

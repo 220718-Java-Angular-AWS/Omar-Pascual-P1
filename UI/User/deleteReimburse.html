@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeleteReimburse</title>
+</head>
+<body>
+    <h1>Delete Reimbursement</h1>
+    <p>Enter the request Id you wish to delete</p>
+    <br>
+    RequestID: <input type ="number" id="reimburseId">
+    <br>
+    <button type="button" onclick ="deleteReimburse()">Delete Reimbursement</button>
+    <button type="button" onclick ="mainMenu()">Main Menu</button> 
+</body>
+
+<script>
+    async function deleteReimburse(){
+        let reimburseId = document.getElementById("reimburseId").value
+        let url = 'http://localhost:8080/P1/reimbruse?reimburseId=' + reimbruseId;
+        let response = await fetch(url, {
+            method: 'DELETE',
+            headers:{
+                'content-Type': 'application/json; charset=utf-8'
+            },
+        });
+        if(response.status = 200){
+            alert("ReimburseId has been deleted");
+        }else{
+            alert("unsuccessful");
+        }
+    }
+
+    async function mainMenu(){
+        location.href='mainMenu.html';
+    }
+</script>
+</html>

@@ -12,13 +12,15 @@
     <buttom type="button" onclick="newReimburse()">Make Reimbursement Request</buttom>
     <br>
     <br>
-    <button type="button" onclick="cancelReimburse()">Cancel A Pending Reimburse</button>
+    <button type="button" onclick="deleteReimburse()">Cancel A Pending Reimburse</button>
     <br>
     <br>
     <button type="button" onclick="viewReimbuse()">View Reimbursement Requests</button>
     <br>
     <br>
     <button type="button" onclick="editReimburse()">Edit a Reimbursement</button>
+    <br>
+    <button type="button" onclick="logOut()">Log Out</button>
     <br>
     <div id="reimburseList"></div>
     
@@ -29,15 +31,21 @@
         location.href="newReimburseForm.html"
     }
 
-    async function cancelReimburse(){
-
+    async function deleteReimburse(){
+        location.href="deleteReimburse.html"
     }
 
     async function viewReimbuse(){
         location.href="viewReimburse.html"
     }
 
+    async function editReimburse(){
+        location.href="editReimburse.html"
+    }
 
+    async function logOut(){
+        location.href = "file:///C:/Omar-Pascual-P1/UI/Guest/login.html";
+    }
 
 </script>
 </html>
